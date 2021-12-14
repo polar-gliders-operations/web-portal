@@ -1,0 +1,92 @@
+
+
+.masthead {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 30rem;
+  padding: 8rem 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(22, 22, 22, 0.1)), color-stop(75%, rgba(22, 22, 22, 0.5)), to(#161616)), url("../img/header_img_new.jpg");
+  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url("../img/header_img_new.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+
+.lead2 {
+  
+  font-style: italic;
+}
+
+.front-title {
+  font-size: '16px';
+}
+
+
+/*
+####################################################
+M E D I A  Q U E R I E S
+####################################################
+*/
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Bootstrap 4 breakpoints
+*/
+/* Small devices (landscape phones, 544px and up) */
+@media (min-width: 544px) {  
+  .lead {font-size: 12px;}
+  .lead2 {font-size: 12px; font-style: italic;}
+  .nav-item {font-size: 12px;}
+  .navbar-brand {font-size: 14px;}
+  .front-title {font-size: 16px;}
+  .section-heading {font-size: 16px}
+  .section-body {font-size: 10px}
+
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {  
+  .lead {font-size: 16px;}
+  .lead2 {font-size: 18px; font-style: italic;}
+
+  .nav-item {font-size: 14px;}
+  .navbar-brand {font-size: 16px;}
+  .front-title {font-size: 24px;}
+  .section-heading {font-size: 32px}
+  .section-body {font-size: 10px}
+
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+  .lead {font-size: 30px;}
+  .lead2 {font-size: 24px; font-style: italic;}
+
+  .nav-item {font-size: 14px;}
+  .navbar-brand {font-size: 20px;}
+  .front-title {font-size: 30px;}
+  .section-heading {font-size: 36px}
+  .section-body {font-size: 16px}
+
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+  .lead {font-size: 32px;}
+  .lead2 {font-size: 28px; font-style: italic;}
+
+  .nav-item {font-size: 16px;}
+  .navbar-brand {font-size: 32px;}
+  .front-title {font-size: 60px;}
+  .section-heading {font-size: 48px}
+  .section-body {font-size: 18px}
+
+
+}
+
+/*
