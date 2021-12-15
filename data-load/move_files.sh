@@ -1,0 +1,1 @@
+mv asi* ../data/seaice_latest.nc 
