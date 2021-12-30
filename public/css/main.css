@@ -1,4 +1,24 @@
 
+.head{
+    margin: 0 0;
+    padding: 2em;
+    position: relative;
+   }
+   .head h1{
+    color:#006699;
+    margin: 1em;
+   }
+
+   .head img{
+   width:100%; 
+   background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url("../img/figures/map_overview.gif");
+   background-position: center;
+   background-repeat: no-repeat;
+   background-attachment: scroll;
+   background-size: contain;   
+}
+
+
 
 .about{
     margin: 1em 0;
@@ -10,8 +30,8 @@
     margin: 2em;
    }
    .about img{
-    height: 100%;
-       width: 100%;
+    width: 100%;
+       height: auto;
        border-radius: 50%
    }
    .about span{
