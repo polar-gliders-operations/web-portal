@@ -121,7 +121,11 @@ image = ax.contourf(sst_site2.lon, sst_site2.lat,
 ticks = np.linspace(np.round(min_sst_site2, decimals=1), np.round(max_sst_site2, decimals=1), num=5)
 
 cb = cbar(ticks, image)
+<<<<<<< HEAD
 gl = gridlines()
+=======
+gridlines()
+>>>>>>> 55872c235dd9f43ebc013b5f150291a705d50798
 
 levels = np.arange(np.round(min_sst_site2, decimals=2), np.round(max_sst_site2, decimals=2), 0.2)
 
@@ -194,7 +198,11 @@ plt.clabel(cs, fontsize=9, inline=1,fmt = '%1.1f', zorder=1)
 ticks = np.linspace(np.round(min_sst_site1, decimals=1), np.round(max_sst_site1, decimals=1), num=5)
 
 cb = cbar(ticks, image)
+<<<<<<< HEAD
 gl = gridlines()
+=======
+gridlines()
+>>>>>>> 55872c235dd9f43ebc013b5f150291a705d50798
 
 ax.scatter(site1_lons, site1_lats, s=30, c='cyan', zorder=5,
            edgecolor='k', lw=1, transform=ccrs.PlateCarree())
@@ -226,7 +234,11 @@ plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/sst_S1_latest.
 
 ### load adt data ###
 
+<<<<<<< HEAD
 adt = xr.open_dataset('/home/mduplessis/web-portal/data/adt_latest.nc')
+=======
+adt = xr.open_dataset('../../data/adt_latest.nc')
+>>>>>>> 55872c235dd9f43ebc013b5f150291a705d50798
 adt['gos'] = (('time', 'latitude', 'longitude'), np.sqrt(adt.ugos**2+adt.vgos**2).data)
 
 adt_site1 = adt.sel(longitude=slice(-3, 3), latitude=slice(-58, -52))
@@ -262,7 +274,11 @@ ax.scatter(site1_lons, site1_lats, s=30, c='cyan', edgecolor='k',
 ticks=np.arange(0, 0.4, 0.05)
 
 cb = cbar(ticks, image)
+<<<<<<< HEAD
 gl = gridlines()
+=======
+gridlines()
+>>>>>>> 55872c235dd9f43ebc013b5f150291a705d50798
 
 gl.xlocator = mticker.FixedLocator([-2, -1, 0, 1, 2])
 gl.ylocator = mticker.FixedLocator([-57, -56, -55, -54, -53])
@@ -316,7 +332,11 @@ plt.clabel(cs, fontsize=12, inline=1,fmt = '%1.1f', zorder=1)
 ticks=np.arange(0, 0.4, 0.05)
 
 cb = cbar(ticks, image)
+<<<<<<< HEAD
 gl = gridlines()
+=======
+gridlines()
+>>>>>>> 55872c235dd9f43ebc013b5f150291a705d50798
 
 ax.scatter(site2_lons, site2_lats, s=30, c='cyan', zorder=5,
            edgecolor='k', lw=1, transform=ccrs.PlateCarree())
