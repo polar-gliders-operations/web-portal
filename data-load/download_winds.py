@@ -9,7 +9,7 @@ import windstress
 
 
 forecast=72 # forecasted hours 
-bounds=[-30, -80, 50, -50] # north, south, east, west
+bounds=[-30, -80, 360, 0] # north, south, east, west
 
 # identify the latest collection of GFS 0.25 deg forecast
 ds = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/'
@@ -43,8 +43,22 @@ for i in wind.coords.keys():
         times+=i,
         
 if len(times)>1:
-    
-    if len(wind[times[0]]) != len(wind[times[1]]):
+
+    if len(wind[times[0]]) == len(wind[times[1]]):
+
+        uwind = wind['u-component_of_wind_height_above_ground'].values
+        vwind = wind['v-component_of_wind_height_above_ground'].values
+
+        wind = wind.rename({times[0]: 'time'})
+        wind = wind.drop('u-component_of_wind_height_above_ground')
+        wind = wind.drop('v-component_of_wind_height_above_ground')
+            
+        wind['u-component_of_wind_height_above_ground'] = (('time', 'lat', 'lon'), uwind)
+        wind['v-component_of_wind_height_above_ground'] = (('time', 'lat', 'lon'), vwind)
+        
+        wind = wind.drop(times[1])
+
+    elif len(wind[times[0]]) != len(wind[times[1]]):
                 
         if len(wind[times[0]])>len(wind[times[1]]):   
             
@@ -88,11 +102,14 @@ if len(times)==1:
         if 'time' in i:
             wind=wind.rename({i: 'time'})
         
+uwind = wind['u-component_of_wind_height_above_ground'].values
+vwind = wind['v-component_of_wind_height_above_ground'].values
+
 wind['wind_magnitude'] = (('time', 'lat', 'lon'), np.sqrt(uwind**2+vwind**2))
 wind['tau']            = (('time', 'lat', 'lon'), windstress.stress(wind['wind_magnitude']))
 
 time_start = str(wind.time[0].values)[:4] +str(wind.time[0].values)[5:7] +str(wind.time[0].values)[8:10] +str(wind.time[0].values)[11:13]
 time_end   = str(wind.time[-1].values)[:4]+str(wind.time[-1].values)[5:7]+str(wind.time[-1].values)[8:10]+str(wind.time[-1].values)[11:13]
 
-wind.to_netcdf('wind_gfs_'+str(time_start)+'_'+str(time_end)+'.nc')
+#wind.to_netcdf('wind_gfs_'+str(time_start)+'_'+str(time_end)+'.nc')
 wind.to_netcdf('wind_gfs_latest.nc')

@@ -29,5 +29,5 @@ url = flist[-1] # choose the most recent file
 filename = wget.download(url) # download the data from the most recent file
 
 # download the lat and lon info for the sea ice data
-# url = 'https://seaice.uni-bremen.de/data/grid_coordinates/s6250/LongitudeLatitudeGrid-s6250-Antarctic.hdf' 
-# filename_ll = wget.download(url)
+url = 'https://seaice.uni-bremen.de/data/grid_coordinates/s6250/LongitudeLatitudeGrid-s6250-Antarctic.hdf' 
+filename_ll = wget.download(url)
