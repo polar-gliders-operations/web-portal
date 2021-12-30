@@ -1,17 +1,18 @@
-name: base
+name: web
 channels:
   - defaults
 dependencies:
-  - conda
-  - python=3.8
-  - conda-env
-  - conda-build
-  - conda-verify
-  - _ipyw_jlab_nb_ext_conf
-  - anaconda==2020.11=py38_0
-  - anaconda-navigator
-  - navigator-updater
+  - scipy
+  - python=3.9
   - xarray
-  - netcdf4
+  - numpy
   - cartopy
-prefix: /opt/anaconda3
+  - matplotlib
+  - netcdf4
+  - wget
+  - requests
+  - beautifulsoup4
+  - cmocean
+  - siphon
+  - selenium
+prefix: /home/web/miniconda3/envs/web
