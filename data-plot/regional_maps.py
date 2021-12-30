@@ -162,8 +162,8 @@ ax.text(3.15, -65.9, str(sst.time[0].values)[:10], fontsize=14, c='w')
 time_stamp = str(sst.time[0].values)[:4]+str(sst.time[0].values)[5:7]+str(sst.time[0].values)[8:10]
 
 
-plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/sst_MR_'+str(time_stamp)+'.png', dpi=300)
-plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/sst_MR_latest.png', dpi=300)
+plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/sst_MR_'+str(time_stamp)+'.png', dpi=300,transparent=True)
+plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/sst_MR_latest.png', dpi=300,transparent=True)
 
 #############################################################################################################
 
@@ -227,8 +227,8 @@ ax.text(0.65, -56.9, str(sst.time[0].values)[:10], fontsize=14, c='w')
 
 time_stamp = str(sst.time[0].values)[:4]+str(sst.time[0].values)[5:7]+str(sst.time[0].values)[8:10]
 
-plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/sst_S1_'+str(time_stamp)+'.png', dpi=300)
-plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/sst_S1_latest.png', dpi=300)
+plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/sst_S1_'+str(time_stamp)+'.png', dpi=300,transparent=True)
+plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/sst_S1_latest.png', dpi=300,transparent=True)
 
 ##############################################################################################################
 
@@ -301,8 +301,8 @@ ax.text(0.65, -56.9, str(adt.time[0].values)[:10], fontsize=14, c='k')
 
 time_stamp = str(adt.time[0].values)[:4]+str(adt.time[0].values)[5:7]+str(adt.time[0].values)[8:10]
 
-plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/geovel_S1_'+str(time_stamp)+'.png', dpi=300)
-plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/geovel_S1_latest.png', dpi=300)
+plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/geovel_S1_'+str(time_stamp)+'.png', dpi=300,transparent=True)
+plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/geovel_S1_latest.png', dpi=300,transparent=True)
 
 ################################################################################################################
 
@@ -361,5 +361,5 @@ ax.text(3.15, -65.9, str(adt.time[0].values)[:10], fontsize=14, c='k')
 
 time_stamp = str(adt.time[0].values)[:4]+str(adt.time[0].values)[5:7]+str(adt.time[0].values)[8:10]
 
-plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/geovel_MR_'+str(time_stamp)+'.png', dpi=300)
-plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/geovel_MR_latest.png', dpi=300)
+plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/geovel_MR_'+str(time_stamp)+'.png', dpi=300,transparent=True)
+plt.savefig('/home/mduplessis/web-portal/web-portal/data-plot/img/geovel_MR_latest.png', dpi=300,transparent=True)
