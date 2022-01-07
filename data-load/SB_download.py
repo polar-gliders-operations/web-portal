@@ -26,7 +26,7 @@ import requests
 import time
 
 def dl_sb(which='uni',):
-    driver = webdriver.Chrome(executable_path='/Users/thedon/Dropbox/Work/SailBuoy Internship/Webplots/Test/chromedriver')
+    driver = webdriver.Chrome(executable_path='/home/web/chromedriver')
     #driver = webdriver.PhantomJS() # executable_path="/home/mduplessis/python_modules/phantomjs-prebuilt/bin/phantomjs") #(executable_path="/home/martin/Doktorarbeit_SWE/ctd/sailbuoyplotting/node_modules/phantomjs-prebuild/bin/phantomjs") # open a virtual browser
     #driver = webdriver.PhantomJS()
     driver.get("https://ids.sailbuoy.no") # load webpage
