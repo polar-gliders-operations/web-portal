@@ -10,16 +10,16 @@ import numpy as np
 from matplotlib.animation import FuncAnimation
 from scipy.interpolate import griddata as g
 
-wind  = xr.open_dataset('/home/mduplessis/web-portal/data/wind_gfs_latest.nc')
+wind  = xr.open_dataset('/home/web/web-portal/data/wind_gfs_latest.nc')
 wind = my_funcs.adjust_lon_xr_dataset(wind, lon_name='lon')
 
 wind = wind.sel(lon=slice(-50, 50), lat=slice(-30, -80))
 
-seaice_lnlt = xr.open_dataset('/home/mduplessis/web-portal/data/LongitudeLatitudeGrid-s6250-Antarctic.hdf',
+seaice_lnlt = xr.open_dataset('/home/web/web-portal/data/LongitudeLatitudeGrid-s6250-Antarctic.hdf',
                               engine='netcdf4'
                              )
 
-seaice    = xr.open_dataset('/home/mduplessis/web-portal/data/seaice_latest.hdf', engine='netcdf4')
+seaice    = xr.open_dataset('/home/web/web-portal/data/seaice_latest.hdf', engine='netcdf4')
 
 seaice = seaice.rename({'ASI Ice Concentration': 'si_conc'})
 seaice = seaice.assign_coords(lon=(["x", "y"], np.array(seaice_lnlt.Longitudes)))
@@ -68,12 +68,9 @@ colors = [
 # make the cmap of the wind
 my_cmap = my_funcs.make_cmap(colors, bit=True)
 
-<<<<<<< HEAD
 wind     = wind.bfill(dim='time').ffill(dim='time')
 wind_1D  = wind.resample(time='1H').mean()
 wind     = wind.interp_like(wind_1D)
-=======
->>>>>>> 55872c235dd9f43ebc013b5f150291a705d50798
 variable = wind['tau']
 
 # set coords for the ship plans
@@ -99,11 +96,7 @@ PB_lon = 2+(57/60)
 save_animation=True
 
 # set up initial plot
-<<<<<<< HEAD
-fig = plt.figure(figsize=(8, 4))
-=======
 fig = plt.figure(figsize=(8, 5))
->>>>>>> 55872c235dd9f43ebc013b5f150291a705d50798
 ax  = fig.add_subplot(projection=ccrs.PlateCarree())
 
 ax.coastlines(resolution='110m', zorder=5)
@@ -129,14 +122,9 @@ ax.pcolormesh(sic.lon, sic.lat,
               alpha=0.5,
               cmap='gray')
 
-<<<<<<< HEAD
 ax.text(30, -74, "Data: GFS model", fontsize=8)
 ax.text(30, -76.5, 'Wind stress (N m$^{-2}$)', fontsize=8)
 ax.text(30, -79, "%s"%str(wind.time[0].values)[:16], fontsize=8, fontweight='bold')
-=======
-ax.text(24, -76, 'Wind stress (N m$^{-2}$)', fontsize=10, fontweight='bold')
-ax.text(26, -79, "%s"%str(wind.time[0].values)[:16], fontsize=10, fontweight='bold')
->>>>>>> 55872c235dd9f43ebc013b5f150291a705d50798
 
 ax.spines['geo'].set_visible(False)
 plt.gca().xaxis.set_major_locator(plt.NullLocator())
@@ -167,16 +155,9 @@ def update(t):
                     headwidth=1, headlength=2,
                     alpha=0.5,
                     transform=ccrs.PlateCarree())
-<<<<<<< HEAD
-    
-    ax.text(30, -74, "Data: GFS model", fontsize=8)
-    ax.text(30, -76.5, 'Wind stress (N m$^{-2}$)', fontsize=8)
-    time_stamp = ax.text(30, -79, "%s"%str(t)[:16], fontsize=8, fontweight='bold')
-=======
 
     time_stamp = ax.text(26, -79, "%s"%str(t)[:16], fontsize=10, fontweight='bold')
     ax.text(24, -76, 'Wind stress (N m$^{-2}$)', fontsize=10, fontweight='bold')
->>>>>>> 55872c235dd9f43ebc013b5f150291a705d50798
 
     ax.coastlines(resolution='110m', zorder=5)
     ax.set_extent([-50, 50, -75, -30])
@@ -200,8 +181,4 @@ anim = FuncAnimation(fig, update, frames=variable.time.values,
 
 # Save to file or display on screen
 if save_animation:
-<<<<<<< HEAD
-    anim.save('/home/mduplessis/web-portal/web-portal/data-plot/img/map_overview.gif', fps=15, dpi=150)
-=======
-    anim.save('/home/mduplessis/web-portal/web-portal/data-plot/img/map_overview.gif', fps=8, dpi=300)
->>>>>>> 55872c235dd9f43ebc013b5f150291a705d50798
+    anim.save('/home/web/web-portal/data-plot/img/map_overview.gif', fps=15, dpi=150)
