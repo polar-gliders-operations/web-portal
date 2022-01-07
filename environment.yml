@@ -15,4 +15,5 @@ dependencies:
   - cmocean
   - siphon
   - selenium
+  - tqdm
 prefix: /home/web/miniconda3/envs/web
