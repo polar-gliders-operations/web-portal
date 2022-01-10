@@ -3,9 +3,11 @@ import xarray as xr
 import glidertools as gt
 import os
 import cmocean.cm as cmo
+import hvplot.xarray
+import matplotlib.pyplot as plt
 
 # open glider files
-glid_folder = '/mnt/data/sg640/'
+glid_folder = '/mnt/data/sg675/'
 
 names = [
     'ctd_depth',
@@ -18,7 +20,7 @@ names = [
     ]
 
 ds_dict = gt.load.seaglider_basestation_netCDFs(os.path.join(glid_folder,'p*.nc'), names, return_merged=True, keep_global_attrs=False)
-
+ds_640 = ds_dict['sg_data_point']
 ds_640 = ds_640.rename({'aanderaa4831_dissolved_oxygen':'oxygen',
                         'eng_wlbb2fl_FL1sig':'fluorescence'
                        })
