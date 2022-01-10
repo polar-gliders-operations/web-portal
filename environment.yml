@@ -1,6 +1,7 @@
 name: web
 channels:
   - defaults
+  - conda-forge
 dependencies:
   - scipy
   - python=3.9
@@ -16,4 +17,4 @@ dependencies:
   - siphon
   - selenium
   - tqdm
-prefix: /home/web/miniconda3/envs/web
+prefix: /opt/anaconda3/envs/web
