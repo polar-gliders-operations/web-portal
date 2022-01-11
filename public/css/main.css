@@ -176,13 +176,27 @@
 
    .missions h3{
     color: #006699;
-    border-top:4px solid #006699;
-    padding: 1em;
+    /* border-top:3px solid #006699; */
+    padding: 2em;
    } 
     /* .missions .desc{
     
     /* border-top:4px solid #10828C; */
    /* }  */
-   .missions .desc h3{
+   /* .missions .desc h3{
     color: #006699;
-   } 
+   }  */
+
+
+
+   .gliders {
+    padding:0px;
+    margin:0px;
+    border: 0px
+  
+  }
+
+
+.no_border_iframe{
+border: 0; /* or border:none; */
+}
