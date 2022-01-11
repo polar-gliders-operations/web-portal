@@ -27,16 +27,27 @@ ds_640 = ds_640.rename({'aanderaa4831_dissolved_oxygen':'oxygen',
 
 
 latest_dive = ds_640.where(ds_640.dives==ds_640.dives.max())
-latest_dive_plot=latest_dive.hvplot(y=['temperature','salinity','fluorescence','oxygen'], x='ctd_pressure', invert=True,flip_yaxis=True, shared_axes=False,
-                 subplots=True, width=250, height=400,grid=True,line_width=3).cols(4)
 
-hvplot.save(latest_dive_plot, 'img/profiles.html')
+temp_profile_640=latest_dive.hvplot(y=['temperature'], x='ctd_pressure', invert=True,flip_yaxis=True, shared_axes=False,
+                 subplots=True, width=250, height=400,grid=True,line_width=3,xaxis='top')
+salt_profile_640=latest_dive.hvplot(y=['salinity'], x='ctd_pressure', invert=True,flip_yaxis=True, shared_axes=False,
+                 subplots=True, width=250, height=400,grid=True,line_width=3,xaxis='top')
+flr_profile_640=latest_dive.hvplot(y=['fluorescence'], x='ctd_pressure', invert=True,flip_yaxis=True, shared_axes=False,
+                 subplots=True, width=250, height=400,grid=True,line_width=3,xaxis='top')
+oxy_profile_640=latest_dive.hvplot(y=['oxygen'], x='ctd_pressure', invert=True,flip_yaxis=True, shared_axes=False,
+                 subplots=True, width=250, height=400,grid=True,line_width=3,xaxis='top')
+
+hvplot.save(temp_profile_640, '../public/img/figures/temp_profile_640.html')
+hvplot.save(salt_profile_640, '../public/img/figures/salt_profile_640.html')
+hvplot.save(flr_profile_640, '../public/img/figures/flr_profile_640.html')
+hvplot.save(oxy_profile_640, '../public/img/figures/oxy_profile_640.html')
+
 
 
 dive_time=gt.utils.time_average_per_dive(ds_640.dives,ds_640.ctd_time)
 
 from matplotlib import rc
-rc('font',**{'family':'sans-serif','sans-serif':['Helvetica'],'size':16})
+rc('font',**{'size':16})
 params = {'mathtext.default': 'regular' }          
 plt.rcParams.update(params)
 
