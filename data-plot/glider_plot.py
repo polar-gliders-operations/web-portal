@@ -7,7 +7,7 @@ import hvplot.xarray
 import matplotlib.pyplot as plt
 
 # open glider files
-glid_folder = '/mnt/data/sg675/'
+glid_folder = '/mnt/data/sg640/'
 
 names = [
     'ctd_depth',
