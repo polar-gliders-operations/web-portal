@@ -10,13 +10,19 @@ import numpy as np
 from matplotlib.animation import FuncAnimation
 from scipy.interpolate import griddata as g
 
+#glider locations
+import pandas as pd
+sg640 = pd.read_csv('/home/web/web-portal/data/sg640_coords.csv')
+sg675 = pd.read_csv('/home/web/web-portal/data/sg675_coords.csv')
+SB = pd.read_csv('/home/web/web-portal/data/SB_all_positions.csv')
+
 wind  = xr.open_dataset('/home/web/web-portal/data/wind_gfs_latest.nc')
 wind = my_funcs.adjust_lon_xr_dataset(wind, lon_name='lon')
 
 wind = wind.sel(lon=slice(-50, 50), lat=slice(-30, -80))
 
 seaice_lnlt = xr.open_dataset('/home/web/web-portal/data/LongitudeLatitudeGrid-s6250-Antarctic.hdf',
-                              engine='netcdf4'
+                            engine='netcdf4'
                              )
 
 seaice    = xr.open_dataset('/home/web/web-portal/data/seaice_latest.hdf', engine='netcdf4')
@@ -131,6 +137,11 @@ plt.gca().xaxis.set_major_locator(plt.NullLocator())
 plt.gca().yaxis.set_major_locator(plt.NullLocator())
 plt.margins(0,0)
 
+ax.scatter(sg640.longitude,sg640.latitude,c='k',lw=2,zorder=5,transform=ccrs.PlateCarree())
+ax.scatter(SB.Long,SB.Lat,c='tab:orange',lw=2,zorder=5,transform=ccrs.PlateCarree())
+ax.scatter(sg675.longitude,sg675.latitude,c='tab:blue',lw=2,zorder=5,transform=ccrs.PlateCarree())
+
+
 def update(t):
     # Update the plot for a specific time
 
@@ -167,9 +178,12 @@ def update(t):
     plt.gca().yaxis.set_major_locator(plt.NullLocator())
     plt.margins(0,0)
 
-    ax.scatter(site1_lons, site1_lats, s=2, c='m', edgecolor='k', transform=ccrs.PlateCarree())
-    ax.scatter(site2_lons, site2_lats, s=2, c='m', edgecolor='k', transform=ccrs.PlateCarree())
-    ax.scatter(PB_lon, PB_lat, s=5, c='m', edgecolor='k', transform=ccrs.PlateCarree())
+#    ax.scatter(site1_lons, site1_lats, s=2, c='m', edgecolor='k', transform=ccrs.PlateCarree())
+#    ax.scatter(site2_lons, site2_lats, s=2, c='m', edgecolor='k', transform=ccrs.PlateCarree())
+#    ax.scatter(PB_lon, PB_lat, s=5, c='m', edgecolor='k', transform=ccrs.PlateCarree())
+
+    ax.scatter(sg640.longitude,sg640.latitude,s=2,c='m',edgecolor='k',zorder=5,transform=ccrs.PlateCarree())
+    ax.scatter(sg675.longitude,sg675.latitude,s=2,c='tab:blue',zorder=5,transform=ccrs.PlateCarree())
 
     return image,vctrs,time_stamp
 
@@ -181,4 +195,4 @@ anim = FuncAnimation(fig, update, frames=variable.time.values,
 
 # Save to file or display on screen
 if save_animation:
-    anim.save('/home/web/web-portal/data-plot/img/map_overview.gif', fps=15, dpi=150)
+    anim.save('/home/web/web-portal/public/img/figures/map_overview.gif', fps=15, dpi=150)
