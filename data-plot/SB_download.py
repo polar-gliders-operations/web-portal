@@ -29,12 +29,15 @@ def dl_sb():
     chrome_options = Options()
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_experimental_option('useAutomationExtension', False)
-    chrome_options.add_argument("headless")
-    chrome_options.add_argument("disable-infobars")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    
-    driver = webdriver.Chrome(executable_path='/home/web/chromedriver',options=chrome_options)
+    chrome_options.add_argument("--disable-gpu")
+    #chrome_options.add_argument('--remote-debugging-port=9222')
+
+    #driver = webdriver.Chrome(executable_path='/snap/bin/chromium.chromedriver',options=chrome_options)
+    driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver",options=chrome_options)
 
     driver.get("https://ids.sailbuoy.no") # load webpage
     
@@ -63,5 +66,6 @@ def dl_sb():
     file1.close()
     file2.close()
 
-#print('Sailbuoy data downloaded...')
-dl_sb()
+    #print('Sailbuoy data downloaded...')
+
+#dl_sb()

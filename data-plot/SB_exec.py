@@ -1,11 +1,11 @@
-#import SB_download
+import SB_download
 import SB_load
 import SB_plot
 import pandas as pd
 import time 
 
-#SB_download.dl_sb() # Download the data to the /home/web/web-portal/data folder
-#time.sleep(15)      # Just make sure it has time to download the files
+SB_download.dl_sb() # Download the data to the /home/web/web-portal/data folder
+time.sleep(15)      # Just make sure it has time to download the files
 
 pld = SB_load.load_pld(path='data.csv',start='2022-01-10 15:00') # Load the data-file
 
