@@ -58,7 +58,7 @@ def cyclic_colorbar(cax,cmap):
     cax.set_theta_direction(-1)
     cax.set_yticks([])
     cax.set_xticks([0,90*np.pi/180.0,180*np.pi/180.0,270*np.pi/180.0])
-    cax.set_xticklabels(['N','E','S','W'])
+    cax.set_xticklabels(['N','E','S','W '])
 
     cax.plot(np.linspace(0, 2*np.pi, 100), np.ones(100)*39, color='k', linestyle='-',lw=1.5,zorder=5)
     cax.plot(np.linspace(0, 2*np.pi, 100), np.ones(100)*51, color='k', linestyle='-',lw=2,zorder=5)
@@ -149,16 +149,16 @@ def sb_plot(pld,path='SB_plots.png'):
                 ax[i].scatter(temp.Time.values,temp.Lat,c=temp,cmap=cyclic_NESW,label=labels[i][0])
                 ax[i].set_ylim(temp.Lat.min()-temp.Lat.std(),temp.Lat.max()+temp.Lat.std())
                 ax[i].yaxis.set_major_formatter(LatitudeFormatter(dms=True))
-        if i < 2:
-            ax[i].legend(fancybox=True,ncol=2,loc='upper left',shadow=True,framealpha=1,handletextpad=0.2,handlelength=0.75,columnspacing=0.5) 
-        if i > 1:
+        if (i < 2) or (i > 4) :
+            ax[i].legend(fancybox=True,ncol=2,loc='upper left',shadow=True,framealpha=1,handletextpad=0.2,handlelength=0.75) 
+        if (i > 1) and (i < 5) :
             ax[i].legend(fancybox=True,ncol=2,loc='lower left',shadow=True,framealpha=1,handletextpad=0.2,handlelength=0.75) 
         ax[i].set_ylabel(units[i])
 
     ax[3].fill_between(pld['AirmarWindGust'].Time[msk].values, pld['AirmarWindSpeed'][msk],pld['AirmarWindGust'][msk],fc='C1',ec=None,alpha=0.4)
 
-    cax1 = inset_axes(ax[5],width='6%',height='25%' ,axes_class=get_projection_class("polar"),loc='center left') # fig.add_axes([0.94, 0.275, 0.04, .04],polar=True)
-    cax2 = inset_axes(ax[6],width='6%',height='25%' ,axes_class=get_projection_class("polar"),loc='center left') # fig.add_axes([0.94, 0.275, 0.04, .04],polar=True)
+    cax1 = inset_axes(ax[5],width='10%',height='40%', axes_class=get_projection_class("polar"),bbox_to_anchor=(-.89,-.48,1,1), bbox_transform=ax[5].transAxes, borderpad=0) # fig.add_axes([0.94, 0.275, 0.04, .04],polar=True)
+    cax2 = inset_axes(ax[6],width='10%',height='40%', axes_class=get_projection_class("polar"),bbox_to_anchor=(-.89,-.48,1,1), bbox_transform=ax[6].transAxes, borderpad=0) # fig.add_axes([0.94, 0.275, 0.04, .04],polar=True)
 
     cyclic_colorbar(cax1,cyclic_NESW)
     cyclic_colorbar(cax2,cyclic_NESW)
