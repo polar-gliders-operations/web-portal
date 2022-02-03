@@ -72,11 +72,7 @@ def sb_plot(pld,path='SB_plots.png'):
     fig,ax = plt.subplots(7,1,figsize=(20,25),sharex=True,constrained_layout=True,facecolor='w')
 
     cyclic = [[],[],[],[],[],[],[],[]]
-    colours = ListedColormap([[0.00392156862745098, 0.45098039215686275, 0.6980392156862745],
-                          [0.8705882352941177, 0.5607843137254902, 0.0196078431372549],
-                          [0.00784313725490196, 0.6196078431372549, 0.45098039215686275],
-                          [0.8, 0.47058823529411764, 0.7372549019607844]])
-    #test = ListedColormap(['C0',  'k', "#9EB0A7", 'gold']) # Estel's colours"#74A757"
+    colours = ListedColormap([[0.00784313725490196, 0.6196078431372549, 0.45098039215686275],'C1',[0.8, 0.47058823529411764, 0.7372549019607844],'C0'])
 
     for i in range(3):
         cyclic[1 + 2*i] = colours(1+i)
