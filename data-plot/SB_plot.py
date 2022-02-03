@@ -73,6 +73,15 @@ def sb_plot(pld,path='SB_plots.png'):
 
     cyclic = [[],[],[],[],[],[],[],[]]
     colours = ListedColormap([[0.00784313725490196, 0.6196078431372549, 0.45098039215686275],'C1',[0.8, 0.47058823529411764, 0.7372549019607844],'C0'])
+    #
+    
+    
+    
+    #colours = ListedColormap([[0.00392156862745098, 0.45098039215686275, 0.6980392156862745],
+    #                      [0.8705882352941177, 0.5607843137254902, 0.0196078431372549],
+    #                      [0.00784313725490196, 0.6196078431372549, 0.45098039215686275],
+    #                      [0.8, 0.47058823529411764, 0.7372549019607844]])
+    #test = ListedColormap(['C0',  'k', "#9EB0A7", 'gold']) # Estel's colours"#74A757"
 
     for i in range(3):
         cyclic[1 + 2*i] = colours(1+i)
@@ -145,10 +154,10 @@ def sb_plot(pld,path='SB_plots.png'):
                 ax[i].scatter(temp.Time.values,temp.Lat,c=temp,cmap=cyclic_NESW,label=labels[i][0])
                 ax[i].set_ylim(temp.Lat.min()-temp.Lat.std(),temp.Lat.max()+temp.Lat.std())
                 ax[i].yaxis.set_major_formatter(LatitudeFormatter(dms=True))
-        if (i < 2) or (i > 4) :
-            ax[i].legend(fancybox=True,ncol=2,loc='upper left',shadow=True,framealpha=1,handletextpad=0.2,handlelength=0.75) 
-        if (i > 1) and (i < 5) :
+        if (i==2) or (i==4):
             ax[i].legend(fancybox=True,ncol=2,loc='lower left',shadow=True,framealpha=1,handletextpad=0.2,handlelength=0.75) 
+        else:
+            ax[i].legend(fancybox=True,ncol=2,loc='upper left',shadow=True,framealpha=1,handletextpad=0.2,handlelength=0.75) 
         ax[i].set_ylabel(units[i])
 
     ax[3].fill_between(pld['AirmarWindGust'].Time[msk].values, pld['AirmarWindSpeed'][msk],pld['AirmarWindGust'][msk],fc='C1',ec=None,alpha=0.4)
