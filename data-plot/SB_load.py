@@ -38,7 +38,7 @@ Module to load and work with SailBuoy data.
 #  Loading data  #
 ##################
 
-def load_pld(path='../data-load/data.csv', start='2021', end='2023'):
+def load_pld(path='data.csv', start='2021', end='2023'):
 
     """
     Loading the paylod data from the SailBuoy. Accurate for SB1812 as of Dec 2021.
@@ -56,7 +56,7 @@ def load_pld(path='../data-load/data.csv', start='2021', end='2023'):
         Containing payload
 
     """
-    print('Loading sensor data...')
+    #print('Loading sensor data...')
 
     df = pd.read_csv(path,sep=None,engine='python')
     ds = df.set_index(df['Time']).to_xarray()
@@ -115,17 +115,17 @@ def load_pld(path='../data-load/data.csv', start='2021', end='2023'):
              'degrees',
              '']
 
-    for i in tqdm(range(len(df.columns.values)-1)):
+    for i in range(len(df.columns.values)-1):
         ds[df.columns.values[i+1]].attrs['Name'] = names[i]
         ds[df.columns.values[i+1]].attrs['Units'] = units[i]
     ds.attrs['Name'] = 'SB Kringla Datalogger'
 
-    print('Converting conductivity to Absolute Salinity...')
+    #print('Converting conductivity to Absolute Salinity...')
     ds = ds.assign(SSS=gsw.SA_from_SP(gsw.SP_from_C(ds.AADI_Cond, ds.AADI_Temp, 0),0,ds.Lat,ds.Long))
     ds['SSS'].attrs['Name'] = 'Sea Surface Salinity'
     ds['SSS'].attrs['Units'] = 'g/kg'
 
-    print('Calculating density...')
+    #print('Calculating density...')
     ds = ds.assign(Density=gsw.density.rho(ds['SSS'], gsw.CT_from_t(ds['SSS'], ds.AADI_Temp, 0),0))
     ds['Density'].attrs['Name'] = 'Density'
     ds['Density'].attrs['Units'] = 'kg/m3'
@@ -133,7 +133,7 @@ def load_pld(path='../data-load/data.csv', start='2021', end='2023'):
     ds['Sigma'].attrs['Name'] = 'Density'
     ds['Sigma'].attrs['Units'] = 'kg/m3'
     
-    print('Calculating distance...')
+    #print('Calculating distance...')
     ds['Distance'] = xr.DataArray(gt.utils.distance(ds.Lat,ds.Long).cumsum(),dims={'Time':ds.Time},coords={'Time':ds.Time})
     ds['Distance'].attrs['Name'] = 'Distance'
     ds['Distance'].attrs['Units'] = 'm'

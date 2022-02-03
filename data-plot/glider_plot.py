@@ -37,10 +37,10 @@ flr_profile_640=latest_dive.hvplot(y=['fluorescence'], x='ctd_pressure', invert=
 oxy_profile_640=latest_dive.hvplot(y=['oxygen'], x='ctd_pressure', invert=True,flip_yaxis=True, shared_axes=False,
                  subplots=True, width=250, height=400,grid=True,line_width=3,xaxis='top')
 
-hvplot.save(temp_profile_640, '../public/img/figures/temp_profile_640.html')
-hvplot.save(salt_profile_640, '../public/img/figures/salt_profile_640.html')
-hvplot.save(flr_profile_640, '../public/img/figures/flr_profile_640.html')
-hvplot.save(oxy_profile_640, '../public/img/figures/oxy_profile_640.html')
+hvplot.save(temp_profile_640, '/home/web/web-portal/public/img/figures/temp_profile_640.html')
+hvplot.save(salt_profile_640, '/home/web/web-portal/public/img/figures/salt_profile_640.html')
+hvplot.save(flr_profile_640, '/home/web/web-portal/public/img/figures/flr_profile_640.html')
+hvplot.save(oxy_profile_640, '/home/web/web-portal/public/img/figures/oxy_profile_640.html')
 
 
 
@@ -52,6 +52,8 @@ params = {'mathtext.default': 'regular' }
 plt.rcParams.update(params)
 
 fig, ax = plt.subplots(4, figsize=[12, 12])
+
+fig.suptitle('Dive:{}'.format(ds_640.dives[-1].data))
 
 gt.plot(dive_time, ds_640.ctd_depth, ds_640.temperature,
         cmap=cmo.thermal, robust=True, ax=ax[0])
@@ -82,4 +84,23 @@ for i in range(4):
 fig.autofmt_xdate()
 fig.subplots_adjust(hspace=0.45)
 
-plt.savefig('img/sg640_sections.png', dpi=300, bbox_inches='tight', transparent=True)
+plt.savefig('/home/web/web-portal/public/img/figures/sg640_sections.png', dpi=300, bbox_inches='tight', transparent=True)
+
+
+
+# export latest glider coordinates
+
+import pandas as pd
+
+# Group and average by dives so that plotting of positions is fast
+
+ds_640=ds_640.reset_coords()
+ds_640_av = ds_640.groupby('dives').mean()
+
+ds_640_av = ds_640_av.drop('dives')
+
+
+df = pd.DataFrame({'latitude':ds_640_av.latitude,
+		   'longitude':ds_640_av.longitude})
+
+df.to_csv('/home/web/web-portal/data/sg640_coords.csv')

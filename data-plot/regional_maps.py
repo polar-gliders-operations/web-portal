@@ -10,6 +10,12 @@ import numpy as np
 from matplotlib.animation import FuncAnimation
 from scipy.interpolate import griddata as g
 
+import pandas as pd
+
+sg640 = pd.read_csv('/home/web/web-portal/data/sg640_coords.csv')
+sg675 = pd.read_csv('/home/web/web-portal/data/sg675_coords.csv')
+SB = pd.read_csv('/home/web/web-portal/data/SB_all_positions.csv')
+
 sst = xr.open_dataset('/home/web/web-portal/data/sst_latest.nc')
 
 seaice_lnlt = xr.open_dataset('/home/web/web-portal/data/LongitudeLatitudeGrid-s6250-Antarctic.hdf',
@@ -131,10 +137,22 @@ cs=ax.contour(sst_site2.lon, sst_site2.lat,
            colors='k', linewidths=1,
            transform=ccrs.PlateCarree())
 
+ax.scatter(sg640.longitude,sg640.latitude,s=2,c='cyan', zorder=5,
+           lw=1, transform=ccrs.PlateCarree())
+ax.scatter(sg640.longitude.iloc[-1],sg640.latitude.iloc[-1],s=2,c='k', zorder=5,
+            transform=ccrs.PlateCarree())
+
+ax.scatter(SB.Long,SB.Lat,s=2,c='tab:orange', zorder=5,
+            lw=1, transform=ccrs.PlateCarree())
+
+ax.scatter(SB.Long.iloc[-1],SB.Lat.iloc[-1],s=2,c='k', zorder=5,
+            lw=1, transform=ccrs.PlateCarree())
+
+
 plt.clabel(cs, fontsize=9, inline=1,fmt = '%1.1f', zorder=1)
 
-ax.scatter(site2_lons, site2_lats, s=30, c='cyan', zorder=5,
-           edgecolor='k', lw=1, transform=ccrs.PlateCarree())
+#ax.scatter(site2_lons, site2_lats, s=30, c='cyan', zorder=5,
+#           edgecolor='k', lw=1, transform=ccrs.PlateCarree())
 
 gl.xlocator = mticker.FixedLocator([0, 1, 2, 3, 4])
 gl.ylocator = mticker.FixedLocator([-66, -65, -64, -63])
@@ -159,7 +177,7 @@ time_stamp = str(sst.time[0].values)[:4]+str(sst.time[0].values)[5:7]+str(sst.ti
 
 
 plt.savefig('/home/web/web-portal/data-plot/img/sst_MR_'+str(time_stamp)+'.png', dpi=300,transparent=True)
-plt.savefig('/home/web/web-portal/data-plot/img/sst_MR_latest.png', dpi=300,transparent=True)
+plt.savefig('/home/web/web-portal/public/img/figures/sst_MR_latest.png', dpi=300,transparent=True)
 
 #############################################################################################################
 
@@ -195,8 +213,13 @@ ticks = np.linspace(np.round(min_sst_site1, decimals=1), np.round(max_sst_site1,
 cb = cbar(ticks, image)
 gl = gridlines()
 
-ax.scatter(site1_lons, site1_lats, s=30, c='cyan', zorder=5,
-           edgecolor='k', lw=1, transform=ccrs.PlateCarree())
+#ax.scatter(site1_lons, site1_lats, s=30, c='cyan', zorder=5,
+#           edgecolor='k', lw=1, transform=ccrs.PlateCarree())
+
+ax.scatter(sg675.longitude,sg675.latitude,s=2,c='cyan', zorder=5,
+          transform=ccrs.PlateCarree())
+ax.scatter(sg675.longitude.iloc[-1],sg675.latitude.iloc[-1],s=2,c='k', zorder=5,
+           transform=ccrs.PlateCarree())
 
 gl.xlocator = mticker.FixedLocator([-2, -1, 0, 1, 2])
 gl.ylocator = mticker.FixedLocator([-57, -56, -55, -54, -53])
@@ -219,7 +242,7 @@ ax.text(0.65, -56.9, str(sst.time[0].values)[:10], fontsize=14, c='w')
 time_stamp = str(sst.time[0].values)[:4]+str(sst.time[0].values)[5:7]+str(sst.time[0].values)[8:10]
 
 plt.savefig('/home/web/web-portal/data-plot/img/sst_S1_'+str(time_stamp)+'.png', dpi=300,transparent=True)
-plt.savefig('/home/web/web-portal/data-plot/img/sst_S1_latest.png', dpi=300,transparent=True)
+plt.savefig('/home/web/web-portal/public/img/figures/sst_S1_latest.png', dpi=300,transparent=True)
 
 ##############################################################################################################
 
@@ -255,8 +278,13 @@ cs = ax.contour(adt_site1.longitude, adt_site1.latitude,
 
 plt.clabel(cs, fontsize=12, inline=1,fmt = '%1.1f', zorder=1)
 
-ax.scatter(site1_lons, site1_lats, s=30, c='cyan', edgecolor='k',
-           zorder=5, lw=1, transform=ccrs.PlateCarree())
+#ax.scatter(site1_lons, site1_lats, s=30, c='cyan', edgecolor='k',
+#           zorder=5, lw=1, transform=ccrs.PlateCarree())
+
+ax.scatter(sg675.longitude,sg675.latitude,s=2,c='cyan', zorder=5, transform=ccrs.PlateCarree())
+
+ax.scatter(sg675.longitude.iloc[-1],sg675.latitude.iloc[-1],s=2,c='k', zorder=5,edgecolor='k',
+            transform=ccrs.PlateCarree())
 
 ticks=np.arange(0, 0.4, 0.05)
 
@@ -285,7 +313,7 @@ ax.text(0.65, -56.9, str(adt.time[0].values)[:10], fontsize=14, c='k')
 time_stamp = str(adt.time[0].values)[:4]+str(adt.time[0].values)[5:7]+str(adt.time[0].values)[8:10]
 
 plt.savefig('/home/web/web-portal/data-plot/img/geovel_S1_'+str(time_stamp)+'.png', dpi=300,transparent=True)
-plt.savefig('/home/web/web-portal/data-plot/img/geovel_S1_latest.png', dpi=300,transparent=True)
+plt.savefig('/home/web/web-portal/public/img/figures/geovel_S1_latest.png', dpi=300,transparent=True)
 
 ################################################################################################################
 
@@ -317,8 +345,21 @@ ticks=np.arange(0, 0.4, 0.05)
 cb = cbar(ticks, image)
 gl = gridlines()
 
-ax.scatter(site2_lons, site2_lats, s=30, c='cyan', zorder=5,
-           edgecolor='k', lw=1, transform=ccrs.PlateCarree())
+#ax.scatter(site2_lons, site2_lats, s=30, c='cyan', zorder=5,
+#           edgecolor='k', lw=1, transform=ccrs.PlateCarree())
+
+
+ax.scatter(sg640.longitude,sg640.latitude,s=2,c='cyan', zorder=5,
+           transform=ccrs.PlateCarree())
+ax.scatter(sg640.longitude.iloc[-1],sg640.latitude.iloc[-1],s=2,c='k', zorder=5,
+            transform=ccrs.PlateCarree())
+
+ax.scatter(SB.Long,SB.Lat,s=2,c='tab:orange', zorder=5,
+            lw=1, transform=ccrs.PlateCarree())
+
+ax.scatter(SB.Long.iloc[-1],SB.Lat.iloc[-1],s=2,c='k', zorder=5,
+            lw=1, transform=ccrs.PlateCarree())
+
 
 gl.xlocator = mticker.FixedLocator([0, 1, 2, 3, 4])
 gl.ylocator = mticker.FixedLocator([-66, -65, -64, -63])
@@ -341,4 +382,4 @@ ax.text(3.15, -65.9, str(adt.time[0].values)[:10], fontsize=14, c='k')
 time_stamp = str(adt.time[0].values)[:4]+str(adt.time[0].values)[5:7]+str(adt.time[0].values)[8:10]
 
 plt.savefig('/home/web/web-portal/data-plot/img/geovel_MR_'+str(time_stamp)+'.png', dpi=300,transparent=True)
-plt.savefig('/home/web//web-portal/data-plot/img/geovel_MR_latest.png', dpi=300,transparent=True)
+plt.savefig('/home/web//web-portal/public/img/figures/geovel_MR_latest.png', dpi=300,transparent=True)
