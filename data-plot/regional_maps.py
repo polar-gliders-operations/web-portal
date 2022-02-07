@@ -138,16 +138,17 @@ cs=ax.contour(sst_site2.lon, sst_site2.lat,
            transform=ccrs.PlateCarree())
 
 ax.scatter(sg640.longitude,sg640.latitude,s=2,c='cyan', zorder=5,
-           lw=1, transform=ccrs.PlateCarree())
+           lw=1, transform=ccrs.PlateCarree(),label='SG640 Semla')
 ax.scatter(sg640.longitude.iloc[-1],sg640.latitude.iloc[-1],s=2,c='k', zorder=5,
             transform=ccrs.PlateCarree())
 
 ax.scatter(SB.Long,SB.Lat,s=2,c='tab:orange', zorder=5,
-            lw=1, transform=ccrs.PlateCarree())
+            lw=1, transform=ccrs.PlateCarree(),label='SB Kringla')
 
 ax.scatter(SB.Long.iloc[-1],SB.Lat.iloc[-1],s=2,c='k', zorder=5,
             lw=1, transform=ccrs.PlateCarree())
 
+ax.legend(ncol=2,loc='upper center',framealpha=1, handletextpad=0.1, columnspacing = 0.5 ,markerscale=3)
 
 plt.clabel(cs, fontsize=9, inline=1,fmt = '%1.1f', zorder=1)
 
@@ -217,9 +218,11 @@ gl = gridlines()
 #           edgecolor='k', lw=1, transform=ccrs.PlateCarree())
 
 ax.scatter(sg675.longitude,sg675.latitude,s=2,c='cyan', zorder=5,
-          transform=ccrs.PlateCarree())
+          transform=ccrs.PlateCarree(),label='SG675 Lussekatt')
 ax.scatter(sg675.longitude.iloc[-1],sg675.latitude.iloc[-1],s=2,c='k', zorder=5,
            transform=ccrs.PlateCarree())
+
+ax.legend(ncol=1,loc='upper center',framealpha=1, handletextpad=0.1, columnspacing = 0.5 ,markerscale=3)
 
 gl.xlocator = mticker.FixedLocator([-2, -1, 0, 1, 2])
 gl.ylocator = mticker.FixedLocator([-57, -56, -55, -54, -53])
@@ -281,10 +284,12 @@ plt.clabel(cs, fontsize=12, inline=1,fmt = '%1.1f', zorder=1)
 #ax.scatter(site1_lons, site1_lats, s=30, c='cyan', edgecolor='k',
 #           zorder=5, lw=1, transform=ccrs.PlateCarree())
 
-ax.scatter(sg675.longitude,sg675.latitude,s=2,c='cyan', zorder=5, transform=ccrs.PlateCarree())
+ax.scatter(sg675.longitude,sg675.latitude,s=2,c='cyan', zorder=5, transform=ccrs.PlateCarree(),label='SG675 Lussekatt')
 
 ax.scatter(sg675.longitude.iloc[-1],sg675.latitude.iloc[-1],s=2,c='k', zorder=5,edgecolor='k',
             transform=ccrs.PlateCarree())
+
+ax.legend(ncol=1,loc='upper center',framealpha=1, handletextpad=0.1, columnspacing = 0.5 ,markerscale=3)
 
 ticks=np.arange(0, 0.4, 0.05)
 
@@ -350,16 +355,17 @@ gl = gridlines()
 
 
 ax.scatter(sg640.longitude,sg640.latitude,s=2,c='cyan', zorder=5,
-           transform=ccrs.PlateCarree())
+           transform=ccrs.PlateCarree(),label='SG640 Semla')
 ax.scatter(sg640.longitude.iloc[-1],sg640.latitude.iloc[-1],s=2,c='k', zorder=5,
             transform=ccrs.PlateCarree())
 
 ax.scatter(SB.Long,SB.Lat,s=2,c='tab:orange', zorder=5,
-            lw=1, transform=ccrs.PlateCarree())
+            lw=1, transform=ccrs.PlateCarree(),label='SB Kringla')
 
 ax.scatter(SB.Long.iloc[-1],SB.Lat.iloc[-1],s=2,c='k', zorder=5,
             lw=1, transform=ccrs.PlateCarree())
 
+ax.legend(ncol=2,loc='upper center',framealpha=1, handletextpad=0.1, columnspacing = 0.5 ,markerscale=3)
 
 gl.xlocator = mticker.FixedLocator([0, 1, 2, 3, 4])
 gl.ylocator = mticker.FixedLocator([-66, -65, -64, -63])
