@@ -162,7 +162,7 @@ def load_nav(path='../data-load/pilot.csv', start='2022', end='2023'):
 
     """
     
-    print('Loading nav data...')
+    #print('Loading nav data...')
 
     df = pd.read_csv(path,sep=None,engine='python')
     ds = df.set_index(df['Time']).to_xarray()
@@ -261,7 +261,7 @@ def load_nav(path='../data-load/pilot.csv', start='2022', end='2023'):
              '',
              '']
 
-    for i in tqdm(range(len(df.columns.values)-1)):
+    for i in(range(len(df.columns.values)-1)):
         ds[df.columns.values[i+1]].attrs['Name'] = names[i]
         ds[df.columns.values[i+1]].attrs['Units'] = units[i]
     ds.attrs['Name'] = 'SB Kringlam Autopilot'
