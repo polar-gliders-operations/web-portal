@@ -141,7 +141,7 @@ def load_pld(path='data.csv', start='2021', end='2023'):
     
     return ds
 
-def load_nav(path='../data-load/pilot.csv', start='2019', end='2020'):
+def load_nav(path='../data-load/pilot.csv', start='2022', end='2023'):
 
     """
     Loading the navigational data from the SailBuoy. Accurate for SB Kringla as of Dec 2021.
