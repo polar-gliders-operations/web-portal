@@ -80,7 +80,7 @@ import cartopy.crs as ccrs
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 
 sst_site1 = sst.sel(lon=slice(-2, 2), lat=slice(-57, -53))
-sst_site2 = sst.sel(lon=slice(0, 4.5), lat=slice(-66, -62))
+sst_site2 = sst.sel(lon=slice(-0.5, 4.5), lat=slice(-66, -62))
 
 def gridlines():
     
@@ -106,6 +106,8 @@ def cbar(ticks, image):
     cb.ax.tick_params(labelsize=14)
     
     return cb
+
+#############################################################################################################
 
 ## sst regional map for maud rise
 
@@ -157,7 +159,7 @@ plt.clabel(cs, fontsize=9, inline=1,fmt = '%1.1f', zorder=1)
 
 gl.xlocator = mticker.FixedLocator([0, 1, 2, 3, 4])
 gl.ylocator = mticker.FixedLocator([-66, -65, -64, -63])
-ax.set_extent([0.5, 4.501, -66.001, -61.999])
+ax.set_extent([-0.5, 4.501, -66.001, -61.999])
 
 ax.set_title('Sea surface temperature ($^{\circ}$C)', fontweight='bold', fontsize=15)
 
@@ -171,8 +173,7 @@ ax.pcolormesh(sic.lon, sic.lat,
               zorder=2,
               cmap='gray')
 
-ax.text(3.15, -65.9, str(sst.time[0].values)[:10], fontsize=14, c='w')
-ax.text(3.15, -65.9, str(sst.time[0].values)[:10], fontsize=14, c='w')
+ax.text(4.4, -65.9, str(sst.time[0].values)[:10], ha='right', fontsize=14, c='w')
 
 time_stamp = str(sst.time[0].values)[:4]+str(sst.time[0].values)[5:7]+str(sst.time[0].values)[8:10]
 
@@ -255,7 +256,7 @@ adt = xr.open_dataset('/home/web/web-portal/data/adt_latest.nc')
 adt['gos'] = (('time', 'latitude', 'longitude'), np.sqrt(adt.ugos**2+adt.vgos**2).data)
 
 adt_site1 = adt.sel(longitude=slice(-3, 3), latitude=slice(-58, -52))
-adt_site2 = adt.sel(longitude=slice(0, 5), latitude=slice(-67, -61))
+adt_site2 = adt.sel(longitude=slice(-0.5, 5), latitude=slice(-67, -61))
 
 ## plot adt site 1 ##
 
@@ -369,7 +370,7 @@ ax.legend(ncol=2,loc='upper center',framealpha=1, handletextpad=0.1, columnspaci
 
 gl.xlocator = mticker.FixedLocator([0, 1, 2, 3, 4])
 gl.ylocator = mticker.FixedLocator([-66, -65, -64, -63])
-ax.set_extent([0.5, 4.501, -66.001, -61.999])
+ax.set_extent([-0.5, 4.501, -66.001, -61.999])
 
 ax.set_title('Geostrophic velocity (m/s)', fontweight='bold', fontsize=15)
 
@@ -383,7 +384,7 @@ ax.pcolormesh(sic.lon, sic.lat,
               zorder=2,
               cmap='gray')
 
-ax.text(3.15, -65.9, str(adt.time[0].values)[:10], fontsize=14, c='k')
+ax.text(4.4, -65.9, str(adt.time[0].values)[:10], ha='right',fontsize=14, c='k')
 
 time_stamp = str(adt.time[0].values)[:4]+str(adt.time[0].values)[5:7]+str(adt.time[0].values)[8:10]
 
