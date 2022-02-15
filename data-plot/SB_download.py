@@ -23,9 +23,12 @@ from selenium.webdriver.chrome.options import Options
 import pickle
 import requests
 import time
+from pyvirtualdisplay import Display
 
 def dl_sb():
-	
+
+    display = Display(visible=0, size=(1024, 768))
+    display.start()
     chrome_options = Options()
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_experimental_option('useAutomationExtension', False)
@@ -59,13 +62,13 @@ def dl_sb():
     response1 = session.get(download_link1)
     response2 = session.get(download_link2)
     # at this point, the downloadable csv files are stored in the response object
-    file1 = open("data.csv", "w")
-    file2 = open("pilot.csv", "w")
+    file1 = open("/home/web/web-portal/data-plot/data.csv", "w")
+    file2 = open("/home/web/web-portal/data-plot/pilot.csv", "w")
     file1.write(str(response1.text))
     file2.write(str(response2.text))
     file1.close()
     file2.close()
-
+    display.stop()
     #print('Sailbuoy data downloaded...')
 
-#dl_sb()
+dl_sb()
