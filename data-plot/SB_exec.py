@@ -7,10 +7,8 @@ import time
 SB_download.dl_sb() # Download the data to the /home/web/web-portal/data folder
 time.sleep(15)      # Just make sure it has time to download the files
 
-pld = SB_load.load_pld(path='data.csv',start='2022-01-10 15:00') # Load the data-file
+pld = SB_load.load_pld(path='/home/web/web-portal/data-plot/data.csv',start='2022-01-10 15:00') # Load the data-file
 
-pld.Time.to_dataframe().drop('Distance',axis=1).to_csv('../data/SB_all_positions.csv',index=False) # Save the positions and time as a .csv
+pld.Time.to_dataframe().drop('Distance',axis=1).to_csv('/home/web/web-portal/data/SB_all_positions.csv',index=False) # Save the positions and time as a .csv
 
-SB_plot.sb_plot(pld,path='img/Sailbuoy_plot.png')
-
-print('Done, finally...')
+SB_plot.sb_plot(pld,path='/home/web/web-portal/data-plot/img/Sailbuoy_plot.png')
