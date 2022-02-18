@@ -1,1 +1,12 @@
 .ipynb*
+data-plot/img*
+*.png
+*.txt
+*.csv
+*.swp
+*.pyc
+*.log
+data-plot/SB_WP_check.py
+data-plot/SB_alarms.py
+data/
+
