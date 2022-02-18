@@ -192,7 +192,7 @@ def sb_plot(pld,path='SB_plots.png'):
         
     if ((pld.Time[-1] - pld.Time[0]).data.astype('timedelta64[D]') > 30):
         ax[0].xaxis.set_major_locator(mdates.MonthLocator())
-        ax[0].xaxis.set_minor_locator(mdates.DayLocator([1,10,20]))
+        ax[0].xaxis.set_minor_locator(mdates.DayLocator([1,5,10,15,20,25]))
         ax[0].xaxis.set_major_formatter(mdates.DateFormatter("%d\n%B"))
         ax[0].xaxis.set_minor_formatter(mdates.DateFormatter("%d"))
     
