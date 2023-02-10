@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 now = datetime.utcnow()
 query.time_range(now - timedelta(days=2), now) # time range between now and one day ahead - this is not available - only available at one day before resolution  
 
-query.lonlat_box(north=-52, south=-67, east=6, west=-3) # choose lat and lon boundaries
+query.lonlat_box(north=-30, south=-45, east=25, west=0) # choose lat and lon boundaries
 query.variables('analysed_sst')   
 
 import xarray as xr
@@ -23,7 +23,7 @@ import netCDF4
 sst = ncss.get_data(query)
 sst = xr.open_dataset(NetCDF4DataStore(sst))
 sst['analysed_sst']=(('time', 'lat', 'lon'), sst.analysed_sst.data-273.15)
-sst = sst.sel(lon=slice(-10,10),lat=slice(-70,-50))  # reduce subset extent
+sst = sst.sel(lon=slice(0,25),lat=slice(-45,-30))  # reduce subset extent
 
 # mask land
 from global_land_mask import globe
