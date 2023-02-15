@@ -30,7 +30,6 @@ else:
     N = 6
 
 for i in range(messages-N, messages+1, 1):
-#for i in range(1, messages+1, 1):    ##### Activate this line the first time it is run on the server
     # fetch the email message by ID
     res, msg = imap.fetch(str(i), "(RFC822)")
     for response in msg:
@@ -87,7 +86,6 @@ for i in range(messages-N, messages+1, 1):
                     if latest.iloc[-1].Time not in full.Time.values:
                         full = pd.concat([full,latest]).set_index('Time')
                         full.to_csv('../data/SB2326D.csv')
-                        print(f'Saved {latest.iloc[-1].Time} to file.') 
                     else:
                         continue
 
