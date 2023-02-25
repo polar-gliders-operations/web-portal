@@ -38,7 +38,7 @@ Module to load and work with SailBuoy data.
 #  Loading data  #
 ##################
 
-def load_pimpim(path='../data/SB2326D.csv', start='2023', end='2025'):
+def load_pimpim(path='../../data/SB2326D.csv', start='2023', end='2025'):
 
     """
     Loading the paylod data from the SailBuoy. Accurate for SB2326 as of Mar 2023.
@@ -174,7 +174,7 @@ def load_pimpim(path='../data/SB2326D.csv', start='2023', end='2025'):
     
     return ds
 
-def load_kringla(path='../data/SB1812D.csv', start='2023', end='2025'):
+def load_kringla(path='../../data/SB1812D.csv', start='2023', end='2025'):
 
     """
     Loading the paylod data from the SailBuoy. Accurate for SB1812 as of Mar 2023.
