@@ -85,6 +85,7 @@ for i in range(messages-N, messages+1, 1):
                     
                     if latest.iloc[-1].Time not in full.Time.values:
                         full = pd.concat([full,latest]).set_index('Time')
+                        full.sort_values(by='Time', ascending = True, inplace = True) 
                         full.to_csv('../data/SB2326D.csv')
                     else:
                         continue
