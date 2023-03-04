@@ -304,3 +304,10 @@ def load_kringla(path='../../data/SB1812D.csv', start='2023', end='2025'):
     ds = ds.set_coords({'distance'})
     
     return ds
+
+def save_csv(ds,prof_id):
+    df = ds.reset_coords()[['time','longitude','latitude']].to_pandas().reset_index()
+    df['time'] = df['time'].values.astype('datetime64[s]')
+    df['platform_id'] = [prof_id]*len(df.time)
+    df.to_csv(f"../data/{prof_id}_{df['time'].dt.strftime('%Y%m%d')[0]}.csv")
+    return df

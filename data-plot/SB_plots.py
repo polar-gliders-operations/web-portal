@@ -44,11 +44,14 @@ wind_c3 = ListedColormap(['#c76674','#9a9945','#9a9945','#6779d0','#6779d0','#97
 c1 = '#ff6600'
 c0 = '#006699'
 
-sbpp = sbu.load_pimpim(start='2023-02-22',end='2023-02-23')
-sbk = sbu.load_kringla(start='2023-02-21',end='2023-02-22')
+sbpp = sbu.load_pimpim(path='',start='2023-02-22')
+sbk = sbu.load_kringla(path='',start='2023-02-21')
 
 sbpp['FT_WindDir'] = (sbpp['FT_WindDir'] + 180) % 360
 sbk['AirmarWindDirection'] = (sbk['AirmarWindDirection'] + 180) % 360
+
+sbu.save_csv(sbk,'SB1812')
+sbu.save_csv(sbpp,'SB2326')
 
 def plot_line_sct(ds,ax,cbar_ax,speed,direction,gust,gusts):
     
@@ -186,7 +189,7 @@ fig.suptitle('Sailbuoy Kringla',fontsize='xx-large')
 
 fix_xticks(ax,ds)
 
-plt.savefig('../plots/SB1812_20230310.png')
+plt.savefig('../../plots/SB1812_20230310.png')
 
 ##### Plot PimPim #####    
 
@@ -216,4 +219,6 @@ ax[3].set_title(f"(d) {ds['DCPSSpeed'].attrs['long_name'].lower().capitalize()} 
 fig.suptitle('Sailbuoy PimPim',fontsize='xx-large')
 
 fix_xticks(ax,sbpp)
-plt.savefig('../plots/SB2326_20230310.png')
+plt.savefig('../../plots/SB2326_20230310.png')
+
+
